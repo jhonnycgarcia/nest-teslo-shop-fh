@@ -15,3 +15,7 @@
 ```
 docker compose -f docker-compose.yaml up -d
 ```
+
+## Enlaces a recursos del proyecto
+- Seed: https://gist.github.com/Klerith/1fb1b9f758bb0c5b2253dfc94f09e1b6
+
