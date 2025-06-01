@@ -53,7 +53,6 @@ export class Product {
     )
     images?: ProductImage[];
 
-
     @BeforeInsert()
     checkSlugInsert() {
         if(!this.slug) {
