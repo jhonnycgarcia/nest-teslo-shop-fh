@@ -27,7 +27,6 @@ export class ProductsService {
     }
   }
 
-  // TODO: Pagination, Search by term
   findAll(paginationDto: PaginationDto) {
     const { limit = 10, offset = 0 } = paginationDto;
     return this.productRepository.find({
@@ -42,7 +41,13 @@ export class ProductsService {
     if(isUUID(term)) {
       product = await this.productRepository.findOneBy({ id: term });
     } else {
-      product = await this.productRepository.findOneBy({ slug: term });
+      const queryBuilder = this.productRepository.createQueryBuilder();
+      product = await queryBuilder
+        .where('slug = :slug OR UPPER(title) = :title', {
+          slug: term.toLowerCase(),
+          title: term.toUpperCase(),
+        })
+        .getOne();
     }
 
     if(!product) {
