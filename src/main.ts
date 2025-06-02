@@ -6,6 +6,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const logger = new Logger('Bootstrap');
   const port = Number(process.env.PORT ?? 3000);
+  
   app.setGlobalPrefix('api');
 
   app.useGlobalPipes(
