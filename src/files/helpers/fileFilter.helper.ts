@@ -8,9 +8,9 @@ export const fileFilter = (req: Express.Request,file: Express.Multer.File, callb
 
     const fileExtension = file.mimetype.split('/')[1];
     const validExtensions = ['jpg', 'jpeg', 'png', 'gif'];
-    
-    if(validExtensions.includes(fileExtension)){ 
+
+    if(!validExtensions.includes(fileExtension)){ 
         return callback(new Error('Invalid file type'), false);
     }
-    callback(null, true);
+    return callback(null, true);
 }
