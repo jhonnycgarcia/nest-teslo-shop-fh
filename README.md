@@ -9,6 +9,10 @@
 4. Establecer las variables de entorno en el archivo **.env**
 5. Levantar la base de datos utilizando el comando establecido en el apartado de base de datos
 6. Ejecutar el comando `yarn start:dev` para levantar el proyecto
+7. Ejecutar seed:
+```
+http://localhost:3000/api/seed
+```
 
 ## Base de datos
 - Para levantar la base de datos de manera local es necesario ejecutar el comando:
