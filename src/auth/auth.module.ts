@@ -18,8 +18,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
     //   signOptions: {
     //     expiresIn: '2h'
     //   }
-    // })
-
+    // }),
+    
     JwtModule.registerAsync({
       imports: [
         ConfigModule,
@@ -33,7 +33,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
           }
         }
       }
-    })
+    }),
   ],
   controllers: [AuthController],
   providers: [AuthService],
