@@ -6,14 +6,15 @@ import { User } from './entities/user.entity';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { JwtStrategy } from './strategies/jwt.strategy';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([User]),
+    ConfigModule,
     PassportModule.register({
       defaultStrategy: 'jwt'
     }),
-    // JwtModule.register({
     //   secret: process.env.JWT_SECRET,
     //   signOptions: {
     //     expiresIn: '2h'
@@ -27,7 +28,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => {
         return {
-          secret:  configService.get('JWT_SECRET'),
+          secret: configService.get('JWT_SECRET'),
           signOptions: {
             expiresIn: '2h'
           }
@@ -36,7 +37,12 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
     }),
   ],
   controllers: [AuthController],
-  providers: [AuthService],
-  exports: [TypeOrmModule]
+  providers: [AuthService, JwtStrategy],
+  exports: [
+    JwtModule,
+    JwtStrategy,
+    PassportModule,
+    TypeOrmModule,
+  ]
 })
 export class AuthModule {}
