@@ -4,6 +4,8 @@
 /build
 /postgres_data
 /public/products
+/static/products/*.jpg
+/static/products/*.jpeg
 
 # Logs
 logs
