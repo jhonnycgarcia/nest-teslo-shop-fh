@@ -1,6 +1,6 @@
 import { createParamDecorator, ExecutionContext, InternalServerErrorException } from "@nestjs/common";
 
-// Decorador de Parametro
+// Decorador de Propiedad
 export const GetUser = createParamDecorator(
     (data: string, ctx: ExecutionContext) => {
         const req = ctx.switchToHttp().getRequest();
